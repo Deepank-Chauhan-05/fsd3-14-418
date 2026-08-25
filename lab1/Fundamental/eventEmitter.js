@@ -11,8 +11,9 @@ task.on("greet", sayHi);
 task.on("greet", () => {
     console.log("Logged out");
 });
+
 task.once("greet", () => {
-    console.log("System started...")
+    console.log("System started...");
 });
 
 task.off("exit", () => {
@@ -22,4 +23,5 @@ task.off("exit", () => {
 task.emit("greet", "Deepank Chauhan");
 task.emit("greet", "Deepank");
 task.emit("greet", "Rahul");
+
 task.emit("exit", "Raju");
