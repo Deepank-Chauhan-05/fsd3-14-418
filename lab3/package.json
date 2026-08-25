@@ -4,11 +4,10 @@
   "type": "module",
   "main": "app.js",
   "scripts": {
-  "start": "node app.js",
-  "dev": "nodemon prg3.js"
-},
+    "start": "node app.js",
+    "dev": "nodemon prg5.js"
+  },
   "devDependencies": {
     "nodemon": "^3.1.14"
   }
-  
 }
