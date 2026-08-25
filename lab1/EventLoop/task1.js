@@ -1,14 +1,3 @@
-// JavaScript is synchronous and single-threaded.
-
-// For asynchronous operations, JavaScript uses the Event Loop
-// to manage the Call Stack and execute callback functions.
-
-// Common asynchronous methods:
-// 1. setTimeout()
-// 2. setImmediate()       // Node.js
-// 3. process.nextTick()   // Node.js
-// 4. setInterval()
-
 const f1 = () => {
   console.log("f1 starts");
 
