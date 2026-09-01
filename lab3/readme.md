@@ -12,3 +12,8 @@ Status Codes
 403: Forbidden
 404: Not Found
 500: Internal Device Error
+
+npm : package downlaod
+npm start : 
+ctrl+c : terminate server
+np run dev : update live
