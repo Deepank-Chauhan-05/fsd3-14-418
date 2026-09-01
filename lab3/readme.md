@@ -1,19 +1,27 @@
-http module
-http : hypertext transfer protocol
-html- hypertext markup language
-css- cascade style sheet
-npm- node package management
+HTTP Module
+HTTP: HyperText Transfer Protocol
+HTML: HyperText Markup Language
+CSS: Cascading Style Sheets
+NPM: Node Package Manager
+
 
 Status Codes
-200: OK
+200: OK / Success
 201: Created
-400: Bad Response
-401: Unprotected
+400: Bad Request
+401: Unauthorized
 403: Forbidden
 404: Not Found
-500: Internal Device Error
+500: Internal Server Error
 
-npm : package downlaod
-npm start : 
-ctrl+c : terminate server
-np run dev : update live
+NPM Commands
+npm install: Download/install packages
+npm start: Start the application/server
+Ctrl + C: Stop/terminate the server
+npm run dev: Start the development server with live updates
+
+Content-Type
+Content-Type tells the browser/client what type of data the server is sending.
+HTML: text/html — Used for HTML webpages.
+JSON: application/json — Used for sending JSON data.
+Plain Text: text/plain — Used for normal text.
