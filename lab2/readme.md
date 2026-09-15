@@ -24,6 +24,6 @@ It allows JavaScript code to run outside the browser and interact directly with 
 - File operations
   => rename(), copyFile(), unlink(), stat(), existsSync(), access()
 
-index.js
+index.jss
 await can be used with any promise in a async function. that asynch function will also be accessed by await 
 await means the next line of code wont execute until the current line does.
