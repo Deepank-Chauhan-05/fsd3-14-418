@@ -15,7 +15,7 @@
    ```
    "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js
    },
    ```
 10. now you can start the server by typing `npm run dev` in the terminal of project folder
