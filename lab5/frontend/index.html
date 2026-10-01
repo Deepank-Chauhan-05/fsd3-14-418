@@ -1,0 +1,518 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Bluetooth Hub</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background:
+                radial-gradient(circle at 80% 10%, rgba(59, 130, 246, 0.18), transparent 30%),
+                radial-gradient(circle at 10% 90%, rgba(14, 165, 233, 0.12), transparent 30%),
+                #070b14;
+            color: #f8fafc;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            height: 75px;
+            padding: 0 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+            background: rgba(7, 11, 20, 0.7);
+            backdrop-filter: blur(15px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .bluetooth-logo {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            border-radius: 11px;
+            background: #2563eb;
+            box-shadow: 0 0 25px rgba(37, 99, 235, 0.4);
+            font-size: 21px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #94a3b8;
+            font-size: 13px;
+        }
+
+        .online-dot {
+            width: 8px;
+            height: 8px;
+            background: #22c55e;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #22c55e;
+        }
+
+        /* MAIN */
+
+        main {
+            width: 86%;
+            max-width: 1200px;
+            margin: auto;
+            padding: 65px 0;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 330px;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 65px;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 6vw, 68px);
+            line-height: 1.05;
+            letter-spacing: -3px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #60a5fa;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            font-size: 16px;
+            line-height: 1.7;
+            max-width: 550px;
+        }
+
+        /* BLUETOOTH ORB */
+
+        .orb-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        .orb {
+            width: 230px;
+            height: 230px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            position: relative;
+            background: rgba(37, 99, 235, 0.08);
+            border: 1px solid rgba(96,165,250,0.35);
+            box-shadow:
+                0 0 40px rgba(37,99,235,0.15),
+                inset 0 0 40px rgba(37,99,235,0.08);
+        }
+
+        .orb::before,
+        .orb::after {
+            content: "";
+            position: absolute;
+            border: 1px solid rgba(96,165,250,0.2);
+            border-radius: 50%;
+            animation: pulse 3s infinite;
+        }
+
+        .orb::before {
+            width: 280px;
+            height: 280px;
+        }
+
+        .orb::after {
+            width: 330px;
+            height: 330px;
+            animation-delay: 1s;
+        }
+
+        .bt-symbol {
+            font-size: 75px;
+            color: #60a5fa;
+            filter: drop-shadow(0 0 20px rgba(96,165,250,0.6));
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.2;
+                transform: scale(0.95);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+        }
+
+        /* SECTION HEADER */
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 22px;
+        }
+
+        .section-header h2 {
+            font-size: 21px;
+        }
+
+        .device-count {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        /* DEVICES */
+
+        .devices {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        .device {
+            padding: 25px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: rgba(15, 23, 42, 0.65);
+            border-radius: 18px;
+            backdrop-filter: blur(12px);
+            transition: 0.25s ease;
+        }
+
+        .device:hover {
+            transform: translateY(-5px);
+            border-color: rgba(96,165,250,0.35);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        .device-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 22px;
+        }
+
+        .device-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 15px;
+            display: grid;
+            place-items: center;
+            background: rgba(37,99,235,0.13);
+            font-size: 26px;
+        }
+
+        .signal {
+            color: #22c55e;
+            font-size: 12px;
+        }
+
+        .device h3 {
+            font-size: 17px;
+            margin-bottom: 7px;
+        }
+
+        .device-type {
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .device-info {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        .connect {
+            width: 100%;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            background: #2563eb;
+            color: white;
+            font-family: inherit;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .connect:hover {
+            background: #3b82f6;
+            box-shadow: 0 8px 20px rgba(37,99,235,0.25);
+        }
+
+        .connected {
+            background: rgba(34,197,94,0.1);
+            border: 1px solid rgba(34,197,94,0.25);
+            color: #4ade80;
+        }
+
+        .connected:hover {
+            background: rgba(34,197,94,0.15);
+            box-shadow: none;
+        }
+
+        /* SCAN BUTTON */
+
+        .scan-area {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .scan {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 13px 25px;
+            border: 1px solid rgba(96,165,250,0.25);
+            border-radius: 12px;
+            background: rgba(37,99,235,0.08);
+            color: #93c5fd;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .scan:hover {
+            background: rgba(37,99,235,0.15);
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .orb-wrapper {
+                display: none;
+            }
+
+            .devices {
+                grid-template-columns: 1fr;
+            }
+
+            main {
+                width: 90%;
+                padding-top: 40px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+
+        <div class="brand">
+            <div class="bluetooth-logo">ᛒ</div>
+            Bluetooth Hub
+        </div>
+
+        <div class="nav-right">
+            <div class="online-dot"></div>
+            Bluetooth Active
+        </div>
+
+    </nav>
+
+
+    <main>
+
+        <section class="hero">
+
+            <div>
+                <h1>
+                    Your devices.<br>
+                    <span>Connected.</span>
+                </h1>
+
+                <p>
+                    Discover nearby Bluetooth devices, manage your connections,
+                    and keep everything connected from one place.
+                </p>
+            </div>
+
+            <div class="orb-wrapper">
+                <div class="orb">
+                    <div class="bt-symbol">ᛒ</div>
+                </div>
+            </div>
+
+        </section>
+
+
+        <div class="section-header">
+            <h2>Nearby devices</h2>
+            <span class="device-count">4 devices found</span>
+        </div>
+
+
+        <section class="devices">
+
+            <div class="device">
+
+                <div class="device-top">
+                    <div class="device-icon">🎧</div>
+                    <span class="signal">● Strong</span>
+                </div>
+
+                <h3>AirPods Pro</h3>
+                <p class="device-type">Wireless Headphones</p>
+
+                <div class="device-info">
+                    <span>Battery 82%</span>
+                    <span>Nearby</span>
+                </div>
+
+                <button class="connect connected">
+                    ✓ Connected
+                </button>
+
+            </div>
+
+
+            <div class="device">
+
+                <div class="device-top">
+                    <div class="device-icon">🔊</div>
+                    <span class="signal">● Strong</span>
+                </div>
+
+                <h3>JBL Flip 6</h3>
+                <p class="device-type">Bluetooth Speaker</p>
+
+                <div class="device-info">
+                    <span>Battery 64%</span>
+                    <span>8m away</span>
+                </div>
+
+                <button class="connect" onclick="connect(this)">
+                    Connect
+                </button>
+
+            </div>
+
+
+            <div class="device">
+
+                <div class="device-top">
+                    <div class="device-icon">⌨️</div>
+                    <span class="signal">● Medium</span>
+                </div>
+
+                <h3>Magic Keyboard</h3>
+                <p class="device-type">Wireless Keyboard</p>
+
+                <div class="device-info">
+                    <span>Battery 91%</span>
+                    <span>3m away</span>
+                </div>
+
+                <button class="connect" onclick="connect(this)">
+                    Connect
+                </button>
+
+            </div>
+
+
+            <div class="device">
+
+                <div class="device-top">
+                    <div class="device-icon">🖱️</div>
+                    <span class="signal">● Weak</span>
+                </div>
+
+                <h3>MX Master 3S</h3>
+                <p class="device-type">Wireless Mouse</p>
+
+                <div class="device-info">
+                    <span>Battery 45%</span>
+                    <span>12m away</span>
+                </div>
+
+                <button class="connect" onclick="connect(this)">
+                    Connect
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <div class="scan-area">
+            <button class="scan" onclick="scan()">
+                <span>⌕</span>
+                Scan for devices
+            </button>
+        </div>
+
+    </main>
+
+
+    <script>
+
+        function connect(button) {
+
+            button.innerHTML = "✓ Connected";
+            button.classList.add("connected");
+
+        }
+
+
+        function scan() {
+
+            const button = document.querySelector(".scan");
+
+            button.innerHTML = "◌ Scanning...";
+
+            setTimeout(() => {
+
+                button.innerHTML = "✓ Scan complete";
+
+                setTimeout(() => {
+                    button.innerHTML = "⌕ Scan for devices";
+                }, 1500);
+
+            }, 1500);
+
+        }
+
+    </script>
+
+</body>
+</html>
+```
