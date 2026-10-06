@@ -17,3 +17,8 @@
    d. select variant as javascript from arrow key
    e. select esList for linting from arrow key
    f. select install and start the frontend
+
+
+# Components
+rafce -> shortcut
+app.jsx should contain the minimum code
