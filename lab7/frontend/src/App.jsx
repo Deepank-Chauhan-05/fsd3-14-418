@@ -1,6 +1,7 @@
 import Book from "./components/Book";
 import Fruit from "./components/Fruit";
 import Pen from "./components/Pen";
+import Event from "./components/Event";
 import { books } from "./data/books";
 import { pens } from "./data/pens";
 
@@ -16,6 +17,7 @@ export default function App() {
         <Pen pen={pens[0]} />
         <Pen pen={pens[1]} />
         <Fruit />
+        <Event />
       </div>
     </>
   );

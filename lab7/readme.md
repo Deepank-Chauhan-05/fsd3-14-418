@@ -22,3 +22,4 @@
 # Components
 rafce -> shortcut
 app.jsx should contain the minimum code
+by default button in html is submit button
