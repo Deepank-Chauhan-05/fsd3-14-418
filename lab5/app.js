@@ -7,7 +7,7 @@ app.get("/", (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-    res.send("We are FSD Developer")
+    res.send("We are FSD Developer!")
 });
 
 app.post('/login', (req, res) => {
@@ -27,4 +27,3 @@ app.use((req, res) => {
 });
 
 app.listen(3333, () => console.log("Server is running on 3333"));
-
