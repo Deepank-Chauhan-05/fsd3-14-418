@@ -7,8 +7,7 @@ app.get("/", (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-    res.send("We are FSD Developer!")
-});
+    res.send("We are FSD Developer");
 
 app.post('/login', (req, res) => {
     res.send({ msg: `user login` })
