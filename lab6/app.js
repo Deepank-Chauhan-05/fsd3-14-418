@@ -14,7 +14,7 @@ app.get("/api/products", (req, res) => {
     return rest;
   });
 
-  //   res.json(filterProducts);
+  //   res.json
   res.json({ count: filterProducts.length, data: filterProducts });
 });
 
