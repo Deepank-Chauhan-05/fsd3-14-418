@@ -19,7 +19,11 @@
    f. select install and start the frontend
 
 
-# Components
-rafce -> shortcut
-app.jsx should contain the minimum code
-by default button in html is submit button
+## add tailwind to existing react project
+1. open terminal and gate project frontend folder
+2. install tailwind by `npm install tailwindcss @tailwindcss/vite`
+3. open vire.config.js
+4. add `import tailwind from "@tailwindcss/vite";`
+5. add`tailwindcss()` after react()
+6. Add tailwindcss() to the plugins array inside defineConfig(...)
+7. open src/index.css and remove all contents, then add below lne `@import "tailwindcss";`
